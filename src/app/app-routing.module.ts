@@ -19,8 +19,17 @@ const routes: Routes = [
     loadChildren: () => import('./contact/contact-module').then(m => m.ContactModule)
   },
   {
+    path: 'not-found',
+    loadComponent: () => import('./shared/pages/not-found/not-found.component').then(m => m.NotFoundComponent)
+  },
+  {
     path: '',
     redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
     pathMatch: 'full'
   },
 ];
