@@ -1,3 +1,17 @@
-<p>
-  article works!
-</p>
+@if (article) {
+<div class="articulo">
+  <!-- Imagen -->
+  <div>
+    <img [src]="article.image.url" [alt]="article.image.desc">
+  </div>
+  <!-- Título -->
+  <div class="articulo-titulo">
+    <h2>{{ article.title }}</h2>
+  </div>
+  <!-- Descripción -->
+  <div class="contenido">
+    <p>{{ article.description }}</p>
+  </div>
+</div>
+
+}
