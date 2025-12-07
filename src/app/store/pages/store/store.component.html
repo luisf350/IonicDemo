@@ -7,6 +7,9 @@
   }
 
   @else {
+<div class="content-carrito">
+  <p class="detalle-carrito">Cant: {{getTotalItems()}} | Total: {{carrito.total | currency}}</p>
+</div>
 
   @for (item of items; track item.id) {
   <div class="content-item">
@@ -27,6 +30,11 @@
     }
     <div>
       <p>{{ item.price }}</p>
+    </div>
+
+    <div style="text-align: end;">
+      <button class="button-remove" (click)="removeItem(item)" >-</button>
+      <button class="button-add" (click)="addItem(item)" >+</button>
     </div>
 
   </div>
