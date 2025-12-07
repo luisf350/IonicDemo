@@ -1,11 +1,14 @@
 .menu {
-    position: relative;
+    display: flex;
     padding: 0px 10px;
     border-bottom: 1px solid black;
+    position: sticky;
+    top: 0px;
+    background: aliceblue;
 }
 
 .iconos {
     position: absolute;
     right: 10px;
-    top: 5px;
+    top: 35%;
 }

@@ -1,6 +1,43 @@
 <ion-content>
   <app-header></app-header>
   <h1>Store</h1>
-  <app-product-detail></app-product-detail>
+
+  @if (cargando) {
+  <ion-spinner name="crescent"></ion-spinner>
+  }
+
+  @else {
+
+  @for (item of items; track item.id) {
+  <div class="content-item">
+    <div>
+      <h3>{{ item.name }}</h3>
+    </div>
+    <div>
+      <p>{{ item.description }}</p>
+    </div>
+    @if(item.image) {
+    <div>
+      <img [src]="item.image" [alt]="item.name">
+    </div>
+    } @else {
+    <div>
+      <p>No image available</p>
+    </div>
+    }
+    <div>
+      <p>{{ item.price }}</p>
+    </div>
+
+  </div>
+  } @empty {
+  <div>
+    <p>No items available</p>
+  </div>
+  }
+  }
+
+  <div style="margin:60px"></div>
+  <!-- <app-product-detail></app-product-detail> -->
   <app-footer></app-footer>
 </ion-content>

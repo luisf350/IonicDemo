@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Models } from 'src/app/models/models';
 
 @Component({
   selector: 'app-article',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  article: IArticle;
+  article: Models.Home.IArticle;
 
   constructor() { 
     this.loadArticle();
@@ -28,14 +29,4 @@ export class ArticleComponent implements OnInit {
     };
   }
 
-}
-
-interface IArticle {
-  id: string;  
-  title: string;
-  description: string;
-  image: {
-    url: string;
-    desc: string;
-    }
 }
