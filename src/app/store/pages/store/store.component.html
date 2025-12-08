@@ -8,7 +8,7 @@
 
   @else {
 <div class="content-carrito">
-  <p class="detalle-carrito">Cant: {{getTotalItems()}} | Total: {{carrito.total | currency}}</p>
+  <p class="detalle-carrito">Cant: {{getTotalItems()}} | Total: {{getTotal() | currency}}</p>
 </div>
 
   @for (item of items; track item.id) {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Models } from 'src/app/models/models';
+import { CarritoService } from 'src/app/services/carrito-service';
+import { DatabaseService } from 'src/app/services/database-service';
 
 @Component({
   selector: 'app-store',
@@ -16,7 +18,8 @@ export class StoreComponent implements OnInit {
     total: 0
   };
 
-  constructor() {
+
+  constructor(private databaseService: DatabaseService, private carritoService: CarritoService) {
     this.loadItems();
     this.initCarrito();
   }
@@ -32,6 +35,7 @@ export class StoreComponent implements OnInit {
 
   loadItems() {
     this.cargando = true;
+    this.databaseService.getData();
     setTimeout(() => {
       this.items = [
         {
@@ -61,31 +65,37 @@ export class StoreComponent implements OnInit {
   }
 
   addItem(item: Models.Store.IItem) {
-    console.log('Add item', item);
-    if (this.carrito.items.find((i) => i.item.id === item.id)) {
-      this.carrito.items.find((i) => i.item.id === item.id)!.cant += 1;
-    } else {
-      this.carrito.items.push({ item, cant: 1 });
-    }
-    this.carrito.total += item.price;
+    this.carritoService.addItem(item);
+    // console.log('Add item', item);
+    // if (this.carrito.items.find((i) => i.item.id === item.id)) {
+    //   this.carrito.items.find((i) => i.item.id === item.id)!.cant += 1;
+    // } else {
+    //   this.carrito.items.push({ item, cant: 1 });
+    // }
+    // this.carrito.total += item.price;
   }
 
   removeItem(item: Models.Store.IItem) {
-    console.log('Remove item', item);
-    if (this.carrito.items.find((i) => i.item.id === item.id)) {
-      const itemIndex = this.carrito.items.findIndex((i) => i.item.id === item.id);
-      if (this.carrito.items[itemIndex].cant > 1) {
-        this.carrito.items[itemIndex].cant -= 1;
-      } else {
-        this.carrito.items.splice(itemIndex, 1);
-      }
-      this.carrito.total -= item.price;
-    }
+    this.carritoService.removeItem(item);
+    // console.log('Remove item', item);
+    // if (this.carrito.items.find((i) => i.item.id === item.id)) {
+    //   const itemIndex = this.carrito.items.findIndex((i) => i.item.id === item.id);
+    //   if (this.carrito.items[itemIndex].cant > 1) {
+    //     this.carrito.items[itemIndex].cant -= 1;
+    //   } else {
+    //     this.carrito.items.splice(itemIndex, 1);
+    //   }
+    //   this.carrito.total -= item.price;
+    // }
 
   }
 
   getTotalItems() {
-    return this.carrito.items.map((i) => i.cant).reduce((a, b) => a + b, 0);
+    return this.carritoService.getTotalItems();
+  }
+
+  getTotal() {
+    return this.carritoService.getTotal();
   }
 
 }
