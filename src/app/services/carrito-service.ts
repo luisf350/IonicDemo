@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Models } from '../models/models';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarritoService {
+
+  private carrito$ = new Subject<Models.Store.ICarrito>();
   carrito: Models.Store.ICarrito;
 
   constructor() {
@@ -16,6 +19,10 @@ export class CarritoService {
       items: [],
       total: 0
     };
+  }
+
+  getCarritoChanges(): Observable<Models.Store.ICarrito> {
+    return this.carrito$.asObservable();
   }
 
   addItem(item: Models.Store.IItem) {

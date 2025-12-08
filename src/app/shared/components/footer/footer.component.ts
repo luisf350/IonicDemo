@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Models } from 'src/app/models/models';
+import { CarritoService } from 'src/app/services/carrito-service';
 
 @Component({
   selector: 'app-footer',
@@ -8,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent  implements OnInit {
 
+  cant:number=0;
+  private carritoService = Inject(CarritoService);
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
 }
