@@ -1,9 +1,27 @@
-<div class="producto">
-  <div>
-    <h3>Título del producto</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos natus odio non doloribus at. Minus tenetur, magni at asperiores ad accusamus reiciendis suscipit dolor? Totam, cupiditate? Possimus nulla vitae eos!</p>
+ <div class="content-item">
+    <div>
+      <h3>{{ item.name }}</h3>
+    </div>
+    <div>
+      <p>{{ item.description }}</p>
+    </div>
+    @if(item.image) {
+    <div>
+      <img [src]="item.image" [alt]="item.name">
+    </div>
+    } @else {
+    <div>
+      <p>No image available</p>
+    </div>
+    }
+    <div>
+      <p>{{ item.price }}</p>
+    </div>
+
+    <div style="text-align: end;">
+      <button class="button-remove" (click)="removeItem()" >-</button>
+      <span>{{cantidad}}</span>
+      <button class="button-add" (click)="addItem()" >+</button>
+    </div>
+
   </div>
-  <div style="text-align: end;">
-    <button [routerLink]="['/store/item']">Ver Detalles</button>
-  </div>
-</div>

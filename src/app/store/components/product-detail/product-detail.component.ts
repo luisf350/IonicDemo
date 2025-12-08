@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Models } from 'src/app/models/models';
 
 @Component({
@@ -9,12 +9,32 @@ import { Models } from 'src/app/models/models';
 })
 export class ProductDetailComponent  implements OnInit {
 
-  carrito: Models.Store.ICarrito;
+  cantidad: number = 0;
+  @Input()
   item: Models.Store.IItem;
-  pedidos: Models.Store.IPedido[];
+
+  @Output() 
+  addItemEvent = new EventEmitter<Models.Store.IItem>();
+
+    @Output() 
+  removeItemEvent = new EventEmitter<Models.Store.IItem>();
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.item);
+  }
+
+  addItem() {
+    this.cantidad++;
+    this.addItemEvent.emit(this.item);
+  }
+
+  removeItem() {
+    if (this.cantidad > 0) {
+      this.cantidad--;
+      this.removeItemEvent.emit(this.item);
+    }
+  }
 
 }
