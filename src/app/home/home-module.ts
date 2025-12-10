@@ -6,12 +6,14 @@ import { ArticleComponent } from './components/article/article.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../shared/shared-module';
+import { ArticlePageComponent } from './pages/article-page/article-page.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ArticleComponent
+    ArticleComponent,
+    ArticlePageComponent
   ],
   imports: [
     CommonModule,
